@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/wisheee/gulp-sample#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.16.9",
     "gulp": "^4.0.2"
   }
 }
