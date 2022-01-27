@@ -5,6 +5,7 @@ import ws from "gulp-webserver";
 
 const routes = {
 	pug: {
+		watch: 'src/**/*.pug',
 		src: 'src/*.pug',
 		dest: 'build'
 	}
@@ -26,10 +27,12 @@ const webserver = () =>
 			open: true
 		}));
 
+const watch = () =>	gulp.watch(routes.pug.watch, pug);
+
 const prepare = gulp.series([clean]);
 
 const assets = gulp.series([pug]);
 
-const postDev = gulp.series([webserver]);
+const postDev = gulp.parallel([webserver, watch]);
 
 export const dev = gulp.series([prepare, assets, postDev]);
