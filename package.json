@@ -1,0 +1,26 @@
+{
+  "name": "gulp-sample",
+  "version": "1.0.0",
+  "description": "Learn Gulp by building an awesome development environment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wisheee/gulp-sample.git"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "wishee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wisheee/gulp-sample/issues"
+  },
+  "homepage": "https://github.com/wisheee/gulp-sample#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
