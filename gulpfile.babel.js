@@ -9,6 +9,7 @@ import autoprefixer from "gulp-autoprefixer";
 import csso from "gulp-csso";
 import bro from "gulp-bro";
 import babelify from "babelify";
+import ghPages from "gulp-gh-pages";
 
 const sass = gulpSass(dartSass);
 
@@ -40,7 +41,7 @@ const pug = () =>
 		.pipe(gpug())
 		.pipe(gulp.dest(routes.pug.dest));
 
-const clean = () => del([routes.pug.dest]);
+const clean = () => del(['build', '.publish']);
 
 const webserver = () => 
 	gulp
@@ -75,6 +76,8 @@ const js = () =>
 		}))
 		.pipe(gulp.dest(routes.js.dest));
 
+const gh = () => gulp.src('build/**/*').pipe(ghPages());
+
 const watch = () =>	{
 	gulp.watch(routes.pug.watch, pug);
 	gulp.watch(routes.img.src, img);
@@ -86,6 +89,8 @@ const prepare = gulp.series([clean, img]);
 
 const assets = gulp.series([pug, styles, js]);
 
-const postDev = gulp.parallel([webserver, watch]);
+const live = gulp.parallel([webserver, watch]);
 
-export const dev = gulp.series([prepare, assets, postDev]);
+export const build = gulp.series([prepare, assets]);
+export const dev = gulp.series([build, live]);
+export const deploy = gulp.series([build, gh, clean]);
