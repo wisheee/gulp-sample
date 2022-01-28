@@ -5,6 +5,7 @@ import ws from "gulp-webserver";
 import gimage from "gulp-image";
 import dartSass from "sass";
 import gulpSass from "gulp-sass";
+import autoprefixer from "gulp-autoprefixer";
 
 const sass = gulpSass(dartSass);
 
@@ -51,6 +52,7 @@ const styles = () =>
 	gulp
 		.src(routes.scss.src)
 		.pipe(sass().on('error', sass.logError))
+		.pipe(autoprefixer())
 		.pipe(gulp.dest(routes.scss.dest));
 
 const watch = () =>	{
